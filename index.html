@@ -14,6 +14,13 @@
     <div class="app-container">
         <!-- Main Content Area -->
         <main class="main-content">
+            <!-- Global Settings Button -->
+            <div class="global-settings">
+                <button class="settings-btn" id="settings-btn">
+                    <i class="fas fa-cog"></i>
+                </button>
+            </div>
+
             <!-- Training Tab Content -->
             <div id="training-tab" class="tab-content active">
                 <!-- Top Header -->
@@ -107,19 +114,138 @@
 
             <!-- Nutrition Tab Content -->
             <div id="nutrition-tab" class="tab-content">
-                <div class="placeholder-content">
-                    <i class="fas fa-utensils"></i>
-                    <h2>Nutrition Tracking</h2>
-                    <p>Coming soon! Track your daily food intake with calories, protein, carbs, and fats.</p>
+                <!-- Nutrition Header -->
+                <header class="nutrition-header">
+                    <div class="date-display" id="nutrition-date"></div>
+                </header>
+
+                <!-- Food Blocks Container -->
+                <div class="food-container">
+                    <div class="food-blocks" id="food-blocks">
+                        <!-- Food blocks will be dynamically added here -->
+                    </div>
+
+                    <!-- Add Food Button -->
+                    <button class="add-food-btn" id="add-food-btn">
+                        <i class="fas fa-plus"></i> Add Food
+                    </button>
+                </div>
+
+                <!-- Add Food Modal -->
+                <div id="food-modal" class="modal">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2>Add Food</h2>
+                            <button class="close-modal" id="close-food-modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="food-form">
+                                <div class="form-group">
+                                    <label for="food-name">Food Name *</label>
+                                    <input type="text" id="food-name" name="food-name" required>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="food-calories">Calories</label>
+                                        <input type="number" id="food-calories" name="food-calories" min="0" step="1"
+                                            placeholder="0">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="food-protein">Protein (g)</label>
+                                        <input type="number" id="food-protein" name="food-protein" min="0" step="0.1"
+                                            placeholder="0">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="food-carbs">Carbohydrates (g)</label>
+                                        <input type="number" id="food-carbs" name="food-carbs" min="0" step="0.1"
+                                            placeholder="0">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="food-fats">Fats (g)</label>
+                                        <input type="number" id="food-fats" name="food-fats" min="0" step="0.1"
+                                            placeholder="0">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="food-note">Note</label>
+                                    <textarea id="food-note" name="food-note" rows="2"
+                                        placeholder="Add any notes..."></textarea>
+                                </div>
+                                <div class="form-actions">
+                                    <button type="button" class="btn btn-secondary" id="cancel-food">Cancel</button>
+                                    <button type="button" class="btn btn-secondary" id="quick-add-food">Quick
+                                        Add</button>
+                                    <button type="submit" class="btn btn-primary">Add Food</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Add Modal -->
+                <div id="quick-add-modal" class="modal">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2>Quick Add Food</h2>
+                            <button class="close-modal" id="close-quick-add-modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="quick-add-foods" id="quick-add-foods-list">
+                                <!-- Previously added foods will be listed here -->
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <!-- Progress Tab Content -->
             <div id="progress-tab" class="tab-content">
-                <div class="placeholder-content">
-                    <i class="fas fa-chart-line"></i>
-                    <h2>Progress Tracking</h2>
-                    <p>Coming soon! View your monthly training and nutrition summaries.</p>
+                <!-- Progress Header -->
+                <header class="progress-header">
+                    <div class="calendar-navigation">
+                        <button class="nav-month-btn" id="prev-month">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <h2 class="current-month" id="current-month">December 2024</h2>
+                        <button class="nav-month-btn" id="next-month">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </header>
+
+                <!-- Calendar Container -->
+                <div class="calendar-container">
+                    <div class="calendar-grid" id="calendar-grid">
+                        <!-- Calendar will be dynamically generated here -->
+                    </div>
+                </div>
+
+                <!-- Day Summary Modal -->
+                <div id="day-summary-modal" class="modal">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2 id="day-summary-title">Day Summary</h2>
+                            <button class="close-modal" id="close-day-summary-modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="day-summary-content">
+                                <div class="summary-section">
+                                    <h3>Training</h3>
+                                    <div class="training-summary" id="training-summary">
+                                        <!-- Training summary will be displayed here -->
+                                    </div>
+                                </div>
+                                <div class="summary-section">
+                                    <h3>Nutrition</h3>
+                                    <div class="nutrition-summary" id="nutrition-summary">
+                                        <!-- Nutrition summary will be displayed here -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </main>
@@ -139,6 +265,51 @@
                 <span>Progress</span>
             </button>
         </nav>
+    </div>
+
+    <!-- Settings Modal -->
+    <div id="settings-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Settings</h2>
+                <button class="close-modal" id="close-settings-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="settings-section">
+                    <h3>Theme</h3>
+                    <div class="setting-item">
+                        <label for="theme-toggle">Dark Mode</label>
+                        <div class="toggle-switch">
+                            <input type="checkbox" id="theme-toggle" name="theme-toggle">
+                            <span class="toggle-slider"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="settings-section">
+                    <h3>Display</h3>
+                    <div class="setting-item">
+                        <label for="block-size">Block Size</label>
+                        <select id="block-size" name="block-size">
+                            <option value="small">Small</option>
+                            <option value="medium" selected>Medium</option>
+                            <option value="large">Large</option>
+                        </select>
+                    </div>
+                    <div class="setting-item">
+                        <label for="font-size">Font Size</label>
+                        <select id="font-size" name="font-size">
+                            <option value="small">Small</option>
+                            <option value="medium" selected>Medium</option>
+                            <option value="large">Large</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" id="reset-settings">Reset to Default</button>
+                    <button type="button" class="btn btn-primary" id="save-settings">Save Settings</button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script src="script.js"></script>
