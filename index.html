@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Training Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Training Tab Content -->
+            <div id="training-tab" class="tab-content active">
+                <!-- Top Header -->
+                <header class="training-header">
+                    <div class="date-display" id="current-date"></div>
+                    <div class="training-name-container">
+                        <h1 class="training-name" id="training-name" contenteditable="true">My Training</h1>
+                        <button class="edit-training-btn" id="edit-training-btn">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                    </div>
+                </header>
+
+                <!-- Training Management Modal -->
+                <div id="training-modal" class="modal">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2>Manage Training</h2>
+                            <button class="close-modal" id="close-training-modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="training-actions">
+                                <button class="btn btn-primary" id="create-new-training">
+                                    <i class="fas fa-plus"></i> Create New Training
+                                </button>
+                                <div class="saved-trainings">
+                                    <h3>Saved Trainings</h3>
+                                    <div id="saved-trainings-list"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Exercise Blocks Container -->
+                <div class="exercise-container">
+                    <div class="exercise-blocks" id="exercise-blocks">
+                        <!-- Exercise blocks will be dynamically added here -->
+                    </div>
+
+                    <!-- Add Exercise Button -->
+                    <button class="add-exercise-btn" id="add-exercise-btn">
+                        <i class="fas fa-plus"></i> Add Exercise
+                    </button>
+                </div>
+
+                <!-- Add Exercise Modal -->
+                <div id="exercise-modal" class="modal">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2>Add Exercise</h2>
+                            <button class="close-modal" id="close-exercise-modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="exercise-form">
+                                <div class="form-group">
+                                    <label for="exercise-name">Exercise Name</label>
+                                    <input type="text" id="exercise-name" name="exercise-name" required>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="exercise-sets">Sets</label>
+                                        <input type="number" id="exercise-sets" name="exercise-sets" min="1" max="99"
+                                            required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exercise-reps">Reps</label>
+                                        <input type="number" id="exercise-reps" name="exercise-reps" min="1" max="999"
+                                            required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exercise-weight">Weight (optional)</label>
+                                    <input type="number" id="exercise-weight" name="exercise-weight" min="0" step="0.5"
+                                        placeholder="0">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exercise-note">Note (optional)</label>
+                                    <textarea id="exercise-note" name="exercise-note" rows="3"
+                                        placeholder="Add any notes..."></textarea>
+                                </div>
+                                <div class="form-actions">
+                                    <button type="button" class="btn btn-secondary" id="cancel-exercise">Cancel</button>
+                                    <button type="submit" class="btn btn-primary">Add Exercise</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Nutrition Tab Content -->
+            <div id="nutrition-tab" class="tab-content">
+                <div class="placeholder-content">
+                    <i class="fas fa-utensils"></i>
+                    <h2>Nutrition Tracking</h2>
+                    <p>Coming soon! Track your daily food intake with calories, protein, carbs, and fats.</p>
+                </div>
+            </div>
+
+            <!-- Progress Tab Content -->
+            <div id="progress-tab" class="tab-content">
+                <div class="placeholder-content">
+                    <i class="fas fa-chart-line"></i>
+                    <h2>Progress Tracking</h2>
+                    <p>Coming soon! View your monthly training and nutrition summaries.</p>
+                </div>
+            </div>
+        </main>
+
+        <!-- Bottom Navigation -->
+        <nav class="bottom-nav">
+            <button class="nav-tab active" data-tab="training">
+                <i class="fas fa-dumbbell"></i>
+                <span>Training</span>
+            </button>
+            <button class="nav-tab" data-tab="nutrition">
+                <i class="fas fa-utensils"></i>
+                <span>Nutrition</span>
+            </button>
+            <button class="nav-tab" data-tab="progress">
+                <i class="fas fa-chart-line"></i>
+                <span>Progress</span>
+            </button>
+        </nav>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
